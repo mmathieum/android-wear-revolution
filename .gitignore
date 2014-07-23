@@ -1,0 +1,8 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+.DS_Store
+/build
+awr-release-key.gradle
+awr-release-key.keystore
+awr-release-key.properties
