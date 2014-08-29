@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_screen_on_color_title"
+        android:key="pref_key_screen_on_color">
+        <org.mmathieum.awr.colorpickerview.preference.ColorPickerPreference
+            android:defaultValue="0xFFF2F200"
+            android:key="pref_key_screen_on_color_clock"
+            android:title="@string/pref_screen_on_color_clock_title"
+            android:summary="@string/pref_screen_on_color_clock_summary" />
+        <org.mmathieum.awr.colorpickerview.preference.ColorPickerPreference
+            android:defaultValue="0xFF000000"
+            android:key="pref_key_screen_on_color_bg"
+            android:title="@string/pref_screen_on_color_bg_title"
+            android:summary="@string/pref_screen_on_color_bg_summary" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_screen_dimmed_color_title"
+        android:key="pref_key_screen_dimmed_color">
+        <org.mmathieum.awr.colorpickerview.preference.ColorPickerPreference
+            android:defaultValue="0xFFFFFFFF"
+            android:key="pref_key_screen_dimmed_color_clock"
+            android:title="@string/pref_screen_dimmed_color_clock_title"
+            android:summary="@string/pref_screen_dimmed_color_clock_summary" />
+        <org.mmathieum.awr.colorpickerview.preference.ColorPickerPreference
+            android:defaultValue="0xFF000000"
+            android:key="pref_key_screen_dimmed_color_bg"
+            android:title="@string/pref_screen_dimmed_color_bg_title"
+            android:summary="@string/pref_screen_dimmed_color_bg_summary" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_clock_size_title"
+        android:key="pref_key_clock_size">
+        <ListPreference
+            android:key="pref_clock_size_list"
+            android:title="@string/pref_clock_size_list_title"
+            android:summary="@string/pref_clock_size_list_small"
+            android:dialogTitle="@string/pref_clock_size_list_title"
+            android:entries="@array/pref_clock_size_list_entries"
+            android:entryValues="@array/pref_clock_size_list_values"
+            android:defaultValue="small" />
+        <CheckBoxPreference
+            android:key="pref_dimmed_screen_full"
+            android:title="@string/pref_dimmed_screen_full_title"
+            android:summary="@string/pref_dimmed_screen_full_summary"
+            android:defaultValue=" false" />
+    </PreferenceCategory>
+</PreferenceScreen>

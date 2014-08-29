@@ -1,0 +1,5 @@
+/build
+/bin
+/gen
+# Eclipse project files
+/.settings/

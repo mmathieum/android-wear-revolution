@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- CLOCK SIZE PREFERENCES -->
+    <string-array name="pref_clock_size_list_entries">
+        <item>@string/pref_clock_size_list_small</item>
+        <item>@string/pref_clock_size_list_medium</item>
+        <item>@string/pref_clock_size_list_full_screen</item>
+    </string-array>
+    <string-array name="pref_clock_size_list_values">
+        <item>small</item>
+        <item>medium</item>
+        <item>full</item>
+        <item>custom</item>
+    </string-array>
+
+
+</resources>

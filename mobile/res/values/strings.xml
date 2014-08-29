@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Revolution WatchFace</string>
+
+    <string name="title_activity_settings">Revolution WatchFace Settings</string>
+
+    <string name="pref_screen_on_color_title">Screen on color</string>
+    <string name="pref_screen_on_color_clock_title">Clock</string>
+    <string name="pref_screen_on_color_clock_summary">Clock color when screen on</string>
+    <string name="pref_screen_on_color_bg_title">Background</string>
+    <string name="pref_screen_on_color_bg_summary">Background color when screen on</string>
+
+    <string name="pref_screen_dimmed_color_title">Dimmed screen color</string>
+    <string name="pref_screen_dimmed_color_clock_title">Clock</string>
+    <string name="pref_screen_dimmed_color_clock_summary">Clock color when screen dimmed</string>
+    <string name="pref_screen_dimmed_color_bg_title">Background</string>
+    <string name="pref_screen_dimmed_color_bg_summary">Background color when screen dimmed</string>
+    
+    <string name="pref_clock_size_title">Size</string>
+    <string name="pref_clock_size_list_title">Clock size</string>
+    <string name="pref_clock_size_list_small">Small (Default)</string>
+    <string name="pref_clock_size_list_medium">Medium (Overlap Notif.)</string>
+    <string name="pref_clock_size_list_full_screen">Full Screen (Overlap Notif.)</string>
+
+    <string name="pref_dimmed_screen_title">Dimmed screen</string>
+    <string name="pref_dimmed_screen_full_title">Full screen on dimmed screen</string>
+    <string name="pref_dimmed_screen_full_summary">Useful if you always hide cards on dimmed screen.</string>
+
+
+</resources>

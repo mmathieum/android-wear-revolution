@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "org.mmathieum.awr"
+        minSdkVersion 18
+        targetSdkVersion 20
+        versionCode 20140829
+        versionName "0.1 Alpha"
+    }
+
+    Properties releaseKeyProps = new Properties()
+    releaseKeyProps.load(new FileInputStream(file("../awr-release-key.properties")))
+
+    signingConfigs {
+        release {
+            storeFile file(releaseKeyProps['key.store'])
+            storePassword releaseKeyProps['key.store.password']
+            keyAlias releaseKeyProps['key.alias']
+            keyPassword releaseKeyProps['key.alias.password']
+        }
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    // compatibility with Eclipse
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+        release.setRoot('build-types/release')
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    wearApp project(':wear')
+    compile 'com.google.android.gms:play-services-wearable:+'
+}

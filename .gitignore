@@ -1,8 +1,32 @@
 .gradle
-/local.properties
-/.idea/workspace.xml
 .DS_Store
-/build
+# generated files
+bin/
+gen/
+out/
+build/
+# Local configuration file
+local.properties
+# Files containing release key & passwords
 awr-release-key.gradle
 awr-release-key.keystore
 awr-release-key.properties
+local.properties
+# Eclipse project files
+.classpath
+.project
+# IDEA/Android Studio project files, because
+# the project can be imported from settings.gradle
+.idea
+*.iml
+# Local IDEA workspace
+.idea/workspace.xml
+# Gradle cache
+.gradle
+# built application files
+*.apk
+*.ap_
+# files for the dex VM
+*.dex
+# Java class files
+*.class
