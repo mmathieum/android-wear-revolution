@@ -16,16 +16,17 @@
     <string name="pref_screen_dimmed_color_clock_summary">Clock color when screen dimmed</string>
     <string name="pref_screen_dimmed_color_bg_title">Background</string>
     <string name="pref_screen_dimmed_color_bg_summary">Background color when screen dimmed</string>
-    
+
     <string name="pref_clock_size_title">Size</string>
     <string name="pref_clock_size_list_title">Clock size</string>
     <string name="pref_clock_size_list_small">Small (Default)</string>
     <string name="pref_clock_size_list_medium">Medium (Overlap Notif.)</string>
     <string name="pref_clock_size_list_full_screen">Full Screen (Overlap Notif.)</string>
 
-    <string name="pref_dimmed_screen_title">Dimmed screen</string>
-    <string name="pref_dimmed_screen_full_title">Full screen on dimmed screen</string>
-    <string name="pref_dimmed_screen_full_summary">Useful if you always hide cards on dimmed screen.</string>
-
+    <string name="pref_dimmed_clock_size_list_title">Dimmed Clock size</string>
+    <string name="pref_dimmed_clock_size_list_same">Same size (Default)</string>
+    <string name="pref_dimmed_clock_size_list_small">Small</string>
+    <string name="pref_dimmed_clock_size_list_medium">Medium (May Overlap Notif.)</string>
+    <string name="pref_dimmed_clock_size_list_full_screen">Full Screen (May Overlap Notif.)</string>
 
 </resources>

@@ -45,7 +45,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 	private int screenDimmedColorBg;
 	private String listSize;
 	private int customSize;
-	private boolean dimmedFullScreen;
+	private String listDimmedSize;
 	private String animations;
 
 	public SettingsFragment() {
@@ -141,35 +141,40 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 	private PutDataMapRequest getDataMap() {
 		PutDataMapRequest dataMap = PutDataMapRequest.create(Commons.PREF_DATA_REQUEST_PATH);
 		// colors
-		dataMap.getDataMap().putInt(Commons.KEY_PREF_SCREEN_ON_COLOR_CLOCK, screenOnColorClock);
-		dataMap.getDataMap().putInt(Commons.KEY_PREF_SCREEN_ON_COLOR_BACKGROUND, screenOnColorBg);
-		dataMap.getDataMap().putInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_CLOCK, screenDimmedColorClock);
-		dataMap.getDataMap().putInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_BACKGROUND, screenDimmedColorBg);
+		dataMap.getDataMap().putInt(Commons.PREF_SCREEN_ON_COLOR_CLOCK_KEY, screenOnColorClock);
+		dataMap.getDataMap().putInt(Commons.PREF_SCREEN_ON_COLOR_BACKGROUND_KEY, screenOnColorBg);
+		dataMap.getDataMap().putInt(Commons.PREF_SCREEN_DIMMED_COLOR_CLOCK_KEY, screenDimmedColorClock);
+		dataMap.getDataMap().putInt(Commons.PREF_SCREEN_DIMMED_COLOR_BACKGROUND_KEY, screenDimmedColorBg);
 		// sizes
-		dataMap.getDataMap().putString(Commons.KEY_PREF_SIZE_LIST, listSize);
-		dataMap.getDataMap().putBoolean(Commons.KEY_PREF_SIZE_FULL_DIMMED, dimmedFullScreen);
+		dataMap.getDataMap().putString(Commons.PREF_SIZE_LIST_KEY, listSize);
+		dataMap.getDataMap().putString(Commons.PREF_DIMMED_SIZE_LIST_KEY, listDimmedSize);
 		return dataMap;
 	}
 
 	private void setPreferenceSummaries() {
 		// size
-		ListPreference prefSizeList = (ListPreference) findPreference(Commons.KEY_PREF_SIZE_LIST);
+		ListPreference prefSizeList = (ListPreference) findPreference(Commons.PREF_SIZE_LIST_KEY);
 		int prefSizeListIndex = prefSizeList.findIndexOfValue(listSize);
 		if (prefSizeListIndex >= 0) {
 			prefSizeList.setSummary(prefSizeList.getEntries()[prefSizeListIndex]);
+		}
+		ListPreference prefDimmedSizeList = (ListPreference) findPreference(Commons.PREF_DIMMED_SIZE_LIST_KEY);
+		int prefDimmedSizeListIndex = prefDimmedSizeList.findIndexOfValue(listDimmedSize);
+		if (prefDimmedSizeListIndex >= 0) {
+			prefDimmedSizeList.setSummary(prefDimmedSizeList.getEntries()[prefDimmedSizeListIndex]);
 		}
 	}
 
 	private void readPreferences() {
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		// colors
-		this.screenOnColorClock = sharedPref.getInt(Commons.KEY_PREF_SCREEN_ON_COLOR_CLOCK, Commons.KEY_PREF_SCREEN_ON_COLOR_CLOCK_DEFAULT);
-		this.screenOnColorBg = sharedPref.getInt(Commons.KEY_PREF_SCREEN_ON_COLOR_BACKGROUND, Commons.KEY_PREF_SCREEN_ON_COLOR_BACKGROUND_DEFAULT);
-		this.screenDimmedColorClock = sharedPref.getInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_CLOCK, Commons.KEY_PREF_SCREEN_DIMMED_COLOR_CLOCK_DEFAULT);
-		this.screenDimmedColorBg = sharedPref.getInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_BACKGROUND, Commons.KEY_PREF_SCREEN_DIMMED_COLOR_BACKGROUND_DEFAULT);
+		this.screenOnColorClock = sharedPref.getInt(Commons.PREF_SCREEN_ON_COLOR_CLOCK_KEY, Commons.PREF_SCREEN_ON_COLOR_CLOCK_DEFAULT);
+		this.screenOnColorBg = sharedPref.getInt(Commons.PREF_SCREEN_ON_COLOR_BACKGROUND_KEY, Commons.PREF_SCREEN_ON_COLOR_BACKGROUND_DEFAULT);
+		this.screenDimmedColorClock = sharedPref.getInt(Commons.PREF_SCREEN_DIMMED_COLOR_CLOCK_KEY, Commons.PREF_SCREEN_DIMMED_COLOR_CLOCK_DEFAULT);
+		this.screenDimmedColorBg = sharedPref.getInt(Commons.PREF_SCREEN_DIMMED_COLOR_BACKGROUND_KEY, Commons.PREF_SCREEN_DIMMED_COLOR_BACKGROUND_DEFAULT);
 		// sizes
-		this.listSize = sharedPref.getString(Commons.KEY_PREF_SIZE_LIST, Commons.KEY_PREF_SIZE_LIST_DEFAULT);
-		this.dimmedFullScreen = sharedPref.getBoolean(Commons.KEY_PREF_SIZE_FULL_DIMMED, Commons.KEY_PREF_SIZE_FULL_DIMMED_DEFAULT);
+		this.listSize = sharedPref.getString(Commons.PREF_SIZE_LIST_KEY, Commons.PREF_SIZE_LIST_DEFAULT);
+		this.listDimmedSize = sharedPref.getString(Commons.PREF_DIMMED_SIZE_LIST_KEY, Commons.PREF_DIMMED_SIZE_LIST_DEFAULT);
 	}
 
 	@Override

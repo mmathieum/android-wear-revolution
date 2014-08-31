@@ -31,24 +31,24 @@ public class WatchFaceDataLayerListenerService extends WearableListenerService {
 				// read your values from map:
 				final DataMap dataMap = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
 				// colors
-				int screenOnColorClock = dataMap.getInt(Commons.KEY_PREF_SCREEN_ON_COLOR_CLOCK);
-				int screenOnColorBg = dataMap.getInt(Commons.KEY_PREF_SCREEN_ON_COLOR_BACKGROUND);
-				int screenDimmedColorClock = dataMap.getInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_CLOCK);
-				int screenDimmedColorBg = dataMap.getInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_BACKGROUND);
+				int screenOnColorClock = dataMap.getInt(Commons.PREF_SCREEN_ON_COLOR_CLOCK_KEY);
+				int screenOnColorBg = dataMap.getInt(Commons.PREF_SCREEN_ON_COLOR_BACKGROUND_KEY);
+				int screenDimmedColorClock = dataMap.getInt(Commons.PREF_SCREEN_DIMMED_COLOR_CLOCK_KEY);
+				int screenDimmedColorBg = dataMap.getInt(Commons.PREF_SCREEN_DIMMED_COLOR_BACKGROUND_KEY);
 				// sizes
-				String listSize = dataMap.getString(Commons.KEY_PREF_SIZE_LIST);
-				boolean dimmedFullScreen = dataMap.getBoolean(Commons.KEY_PREF_SIZE_FULL_DIMMED);
+				String listSize = dataMap.getString(Commons.PREF_SIZE_LIST_KEY);
+				String listDimmedSize = dataMap.getString(Commons.PREF_DIMMED_SIZE_LIST_KEY);
 				// save into preferences
 				SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 				SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
 				// colors
-				sharedPrefEditor.putInt(Commons.KEY_PREF_SCREEN_ON_COLOR_CLOCK, screenOnColorClock);
-				sharedPrefEditor.putInt(Commons.KEY_PREF_SCREEN_ON_COLOR_BACKGROUND, screenOnColorBg);
-				sharedPrefEditor.putInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_CLOCK, screenDimmedColorClock);
-				sharedPrefEditor.putInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_BACKGROUND, screenDimmedColorBg);
+				sharedPrefEditor.putInt(Commons.PREF_SCREEN_ON_COLOR_CLOCK_KEY, screenOnColorClock);
+				sharedPrefEditor.putInt(Commons.PREF_SCREEN_ON_COLOR_BACKGROUND_KEY, screenOnColorBg);
+				sharedPrefEditor.putInt(Commons.PREF_SCREEN_DIMMED_COLOR_CLOCK_KEY, screenDimmedColorClock);
+				sharedPrefEditor.putInt(Commons.PREF_SCREEN_DIMMED_COLOR_BACKGROUND_KEY, screenDimmedColorBg);
 				// sizes
-				sharedPrefEditor.putString(Commons.KEY_PREF_SIZE_LIST, listSize);
-				sharedPrefEditor.putBoolean(Commons.KEY_PREF_SIZE_FULL_DIMMED, dimmedFullScreen);
+				sharedPrefEditor.putString(Commons.PREF_SIZE_LIST_KEY, listSize);
+				sharedPrefEditor.putString(Commons.PREF_DIMMED_SIZE_LIST_KEY, listDimmedSize);
 				sharedPrefEditor.apply();
 			}
 		}

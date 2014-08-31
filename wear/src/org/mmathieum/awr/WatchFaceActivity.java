@@ -59,7 +59,8 @@ public class WatchFaceActivity extends Activity implements SurfaceHolder.Callbac
 	private int screenDimmedColorBg;
 	private String clockSizeList;
 	private int clockSize = -1;
-	private boolean clockSizeFullDimmed;
+	private String dimmedClockSizeList;
+	private int dimmedClockSize = -1;
 	private String animationList;
 	private boolean screenOnAnimations;
 	private boolean screenDimmedAnimations;
@@ -93,39 +94,67 @@ public class WatchFaceActivity extends Activity implements SurfaceHolder.Callbac
 
 	private void loadSharedPreferences(SharedPreferences sharedPrefs) {
 		// colors
-		this.screenOnColorClock = sharedPrefs.getInt(Commons.KEY_PREF_SCREEN_ON_COLOR_CLOCK, Commons.KEY_PREF_SCREEN_ON_COLOR_CLOCK_DEFAULT);
-		this.screenOnColorBg = sharedPrefs.getInt(Commons.KEY_PREF_SCREEN_ON_COLOR_BACKGROUND, Commons.KEY_PREF_SCREEN_ON_COLOR_BACKGROUND_DEFAULT);
-		this.screenDimmedColorClock = sharedPrefs.getInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_CLOCK, Commons.KEY_PREF_SCREEN_DIMMED_COLOR_CLOCK_DEFAULT);
-		this.screenDimmedColorBg = sharedPrefs.getInt(Commons.KEY_PREF_SCREEN_DIMMED_COLOR_BACKGROUND, Commons.KEY_PREF_SCREEN_DIMMED_COLOR_BACKGROUND_DEFAULT);
+		this.screenOnColorClock = sharedPrefs.getInt(Commons.PREF_SCREEN_ON_COLOR_CLOCK_KEY, Commons.PREF_SCREEN_ON_COLOR_CLOCK_DEFAULT);
+		this.screenOnColorBg = sharedPrefs.getInt(Commons.PREF_SCREEN_ON_COLOR_BACKGROUND_KEY, Commons.PREF_SCREEN_ON_COLOR_BACKGROUND_DEFAULT);
+		this.screenDimmedColorClock = sharedPrefs.getInt(Commons.PREF_SCREEN_DIMMED_COLOR_CLOCK_KEY, Commons.PREF_SCREEN_DIMMED_COLOR_CLOCK_DEFAULT);
+		this.screenDimmedColorBg = sharedPrefs.getInt(Commons.PREF_SCREEN_DIMMED_COLOR_BACKGROUND_KEY, Commons.PREF_SCREEN_DIMMED_COLOR_BACKGROUND_DEFAULT);
 		// sizes
-		this.clockSizeList = sharedPrefs.getString(Commons.KEY_PREF_SIZE_LIST, Commons.KEY_PREF_SIZE_LIST_DEFAULT);
-		this.clockSizeFullDimmed = sharedPrefs.getBoolean(Commons.KEY_PREF_SIZE_FULL_DIMMED, Commons.KEY_PREF_SIZE_FULL_DIMMED_DEFAULT);
+		this.clockSizeList = sharedPrefs.getString(Commons.PREF_SIZE_LIST_KEY, Commons.PREF_SIZE_LIST_DEFAULT);
 		generateClockSize();
+		this.dimmedClockSizeList = sharedPrefs.getString(Commons.PREF_DIMMED_SIZE_LIST_KEY, Commons.PREF_DIMMED_SIZE_LIST_DEFAULT);
+		generateDimmedClockSize();
 	}
 
 
 	private void generateClockSize() {
-		if (Commons.KEY_PREF_SIZE_LIST_SMALL.equals(this.clockSizeList)) {
+		if (Commons.PREF_SIZE_LIST_SMALL.equals(this.clockSizeList)) {
 			if (this.mStub == null) {
 				this.clockSize = -1; // force generate
 				return;
 			}
 			int size = Math.min(this.mStub.getWidth(), this.mStub.getHeight());
 			this.clockSize = size - LARGE_NOTIFICATION_HEIGHT_IN_PX;
-		} else if (Commons.KEY_PREF_SIZE_LIST_MEDIUM.equals(this.clockSizeList)) {
+		} else if (Commons.PREF_SIZE_LIST_MEDIUM.equals(this.clockSizeList)) {
 			if (this.mStub == null) {
 				this.clockSize = -1; // force generate
 				return;
 			}
 			int size = Math.min(this.mStub.getWidth(), this.mStub.getHeight());
 			this.clockSize = size - SMALL_NOTIFICATION_HEIGHT_IN_PX;
-		} else if (Commons.KEY_PREF_SIZE_LIST_FULL.equals(this.clockSizeList)) {
+		} else if (Commons.PREF_SIZE_LIST_FULL.equals(this.clockSizeList)) {
 			if (this.mStub == null) {
 				this.clockSize = -1; // force generate
 				return;
 			}
 			int size = Math.min(this.mStub.getWidth(), this.mStub.getHeight());
 			this.clockSize = size;
+		}
+	}
+
+	private void generateDimmedClockSize() {
+		if (Commons.PREF_DIMMED_SIZE_LIST_SAME.equals(this.dimmedClockSizeList)) {
+			this.dimmedClockSize = this.clockSize;
+		} else if (Commons.PREF_DIMMED_SIZE_LIST_SMALL.equals(this.dimmedClockSizeList)) {
+			if (this.mStub == null) {
+				this.dimmedClockSize = -1; // force generate
+				return;
+			}
+			int size = Math.min(this.mStub.getWidth(), this.mStub.getHeight());
+			this.dimmedClockSize = size - LARGE_NOTIFICATION_HEIGHT_IN_PX;
+		} else if (Commons.PREF_DIMMED_SIZE_LIST_MEDIUM.equals(this.dimmedClockSizeList)) {
+			if (this.mStub == null) {
+				this.dimmedClockSize = -1; // force generate
+				return;
+			}
+			int size = Math.min(this.mStub.getWidth(), this.mStub.getHeight());
+			this.dimmedClockSize = size - SMALL_NOTIFICATION_HEIGHT_IN_PX;
+		} else if (Commons.PREF_DIMMED_SIZE_LIST_FULL.equals(this.dimmedClockSizeList)) {
+			if (this.mStub == null) {
+				this.dimmedClockSize = -1; // force generate
+				return;
+			}
+			int size = Math.min(this.mStub.getWidth(), this.mStub.getHeight());
+			this.dimmedClockSize = size;
 		}
 	}
 
@@ -222,8 +251,10 @@ public class WatchFaceActivity extends Activity implements SurfaceHolder.Callbac
 		if (this.clockSize < 0) {
 			generateClockSize();
 		}
-		int maxSize = this.mStub == null ? 0 : Math.min(this.mStub.getWidth(), this.mStub.getHeight());
-		int size = this.screenDimmed && this.clockSizeFullDimmed ? maxSize : this.clockSize;
+		if (this.dimmedClockSize < 0) {
+			generateDimmedClockSize();
+		}
+		int size = this.screenDimmed ? this.dimmedClockSize : this.clockSize;
 		// this.paddingInPx = size - (2 * Math.round(size * NUMBER_SIZE_IN_PERCENT));
 		this.paddingInPx = (int) (size * PADDING_SIZE_IN_PERCENT); // ((size / (NUMBER_SIZE_IN_STROKE + PADDING_SIZE_IN_STROKE + NUMBER_SIZE_IN_STROKE)) *
 		int timeLeftStart = 0;
