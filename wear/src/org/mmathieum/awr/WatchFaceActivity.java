@@ -213,7 +213,7 @@ public class WatchFaceActivity extends Activity implements SurfaceHolder.Callbac
 	private static final int marginInPx = 0; // 2;
 
 	private static final float NUMBER_SIZE_IN_STROKE = 5f;
-	private static final float PADDING_SIZE_IN_STROKE = 0.25f;
+	private static final float PADDING_SIZE_IN_STROKE = 0.33f;
 	private static final float CLOCK_SIZE_IN_STROKE = NUMBER_SIZE_IN_STROKE + PADDING_SIZE_IN_STROKE + PADDING_SIZE_IN_STROKE + NUMBER_SIZE_IN_STROKE;
 	private static final float PADDING_SIZE_IN_PERCENT = PADDING_SIZE_IN_STROKE / CLOCK_SIZE_IN_STROKE;
 	private static final float NUMBER_SIZE_IN_PERCENT = NUMBER_SIZE_IN_STROKE / CLOCK_SIZE_IN_STROKE;
